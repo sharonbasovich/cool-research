@@ -169,7 +169,7 @@ export function drawLeadChart(el: HTMLElement, run: RunResult | null): void {
   f.g.append('path').attr('d', lineGen(sat)).attr('fill', 'none').attr('stroke', C.fresh).attr('stroke-width', 1.2).attr('stroke-dasharray', '1.5 3');
 
   legend(f, [
-    { label: 'lead Δ (each trial; bold = median)', color: C.lead },
+    { label: 'lead Δ (each trial, bold = median)', color: C.lead },
     { label: 'minority size (N−Δ)/2', color: C.minority },
     { label: 'fresh graph: Δ·√(2/π)·√(pN) iterated', color: C.fresh, dash: '7 4' },
     { label: 'fresh graph, Gaussian with saturation', color: C.fresh, dash: '1.5 3' },

@@ -92,8 +92,8 @@ async function start() {
     <footer class="pm-foot">
       Data extracted by <code>scripts/proof-map/extract.ts</code> from the atlas (sha256 <code>${esc(meta.atlasSha256.slice(0, 12))}</code>)
       and <a href="${esc(meta.leanRepo)}/tree/${esc(meta.leanRev)}" target="_blank" rel="noopener">Lean @ <code>${esc(meta.leanRev.slice(0, 7))}</code></a>
-      on ${esc(meta.generatedAt.slice(0, 10))}. Dependency edges are inferred from the numbered cross-references in each statement and its proof;
-      the atlas is the authority. All mathematics is due to Gopal Goel and Ashwin Sah.
+      on ${esc(meta.generatedAt.slice(0, 10))}. Dependency edges are inferred from the numbered cross-references in each statement and its proof,
+      so treat the atlas as the authority. All of the math is by Gopal Goel and Ashwin Sah.
     </footer>`;
 
   const viewEls = new Map([...main.querySelectorAll<HTMLElement>('.pm-view')].map((el) => [el.dataset.view as ViewId, el]));

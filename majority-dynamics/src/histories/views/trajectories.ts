@@ -162,7 +162,7 @@ export function stepTable(e: EnsembleResult): StepRow[] {
 export function stepTableHtml(e: EnsembleResult): string {
   const h = heuristicFactor(e.params.N, e.p);
   const cell = (s: { mean: number; se: number; n: number }, digits = fmt2) =>
-    s.n ? `${digits(s.mean)}${Number.isFinite(s.se) ? ` <span class="hx-se">± ${digits(s.se)}</span>` : ''}` : '—';
+    s.n ? `${digits(s.mean)}${Number.isFinite(s.se) ? ` <span class="hx-se">± ${digits(s.se)}</span>` : ''}` : 'n/a';
   const rows = stepTable(e)
     .map(
       (r) =>
@@ -173,5 +173,5 @@ export function stepTableHtml(e: EnsembleResult): string {
     <tr><th>step</th><th>Δ<sub>t+1</sub>/Δ<sub>t</sub>, new graph</th><th>Δ<sub>t+1</sub>/Δ<sub>t</sub>, same graph</th><th>same-graph Δ<sub>t+1</sub> ÷ exact fresh E[Δ<sub>t+1</sub> | Δ<sub>t</sub>]</th><th>runs</th></tr>
     ${rows}
   </table>
-  <p class="hx-note">Heuristic factor √(2/π)·√(pN) = ${fmt2(h)}. Means ± standard errors over runs; steps are included only while Δ<sub>t</sub> ≤ N/(2√(pN)), i.e. before saturation.</p>`;
+  <p class="hx-note">Heuristic factor √(2/π)·√(pN) = ${fmt2(h)}. Means ± standard errors over runs. Steps count only while Δ<sub>t</sub> ≤ N/(2√(pN)), i.e. before saturation.</p>`;
 }

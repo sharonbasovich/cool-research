@@ -126,15 +126,15 @@ main.innerHTML = `
   <h1>Large-N lab</h1>
   <p class="lede">Exact simulations of synchronous majority dynamics on <i>G</i>(<i>N</i>,&thinsp;<i>p</i>), set against the
   predictions in Goel &amp; Sah, <a href="${PAPER}"><i>Majority dynamics on sparse random graphs</i></a>
-  (<a href="https://arxiv.org/abs/2609.14957">arXiv:2609.14957</a>). Everything below is computed in your browser (a Web Worker) or by an
-  offline script from the same code. <strong>Simulations are evidence, not proofs</strong>: a finite <i>N</i> cannot distinguish
+  (<a href="https://arxiv.org/abs/2609.14957">arXiv:2609.14957</a>). Everything below runs in your browser (in a Web Worker) or comes from an
+  offline script built on the same code. <strong>Simulations are evidence, not proofs.</strong> At any finite <i>N</i> you can't tell
   <i>pN</i> = <i>N</i><sup>ε</sup> from <i>pN</i> = log <i>N</i>.</p>
 </header>
 
 <section class="card rule">
   <h2>The rule and the theorem</h2>
-  <p>Every vertex holds an opinion ±1. Each day, all vertices simultaneously adopt the strict majority of their neighbours' opinions;
-  on a tie (including a vertex with no neighbours) a vertex keeps its current opinion. Day 1 is the initial colouring. The <em>lead</em>
+  <p>Every vertex holds an opinion ±1. Each day, all vertices simultaneously adopt the strict majority of their neighbours' opinions.
+  On a tie (which includes having no neighbours at all) a vertex keeps its current opinion. Day 1 is the initial colouring. The <em>lead</em>
   Δ is the number of vertices holding the initial majority opinion minus the number holding the other one, so the minority has (<i>N</i>−Δ)/2 vertices.</p>
   <blockquote><strong><a href="${ATLAS}#thm:succinct_main_result">Theorem 1.1</a>.</strong> Fix θ ∈ (½, 1) and <i>T</i> &gt; 1. For all large <i>N</i>,
   all <i>p</i> ∈ (<i>T</i><sup>−1</sup><i>N</i><sup>−θ</sup>, <i>TN</i><sup>−θ</sup>) and τ ∈ [<i>T</i><sup>−1</sup>, <i>T</i>], if exactly
@@ -142,8 +142,8 @@ main.innerHTML = `
   <i>k</i> = 2⌊1/(1−θ)⌋ + 3 with probability 1 − <i>o</i>(1).</blockquote>
   <p><a href="${ATLAS}#cor:random-opinions">Corollary 1.3</a> gives the same for fair-coin initial opinions, and
   <a href="${ATLAS}#thm:uniform-density">Theorem 1.2</a> extends it uniformly to all <i>p</i> ≥ <i>T</i><sup>−1</sup><i>N</i><sup>−θ</sup>.
-  What remains open (from the conjecture of Benjamini, Chan, O'Donnell, Tamuz and Tan) is average degree growing more slowly than every power of <i>N</i>,
-  e.g. <i>pN</i> = log <i>N</i>. See the <a href="${ESSAY}">essay</a> for the story and the <a href="${ATLAS}">proof atlas</a> for the details.</p>
+  The part that's still open (from the conjecture of Benjamini, Chan, O'Donnell, Tamuz and Tan) is when the average degree grows more slowly than every power of <i>N</i>,
+  for example <i>pN</i> = log <i>N</i>. See the <a href="${ESSAY}">essay</a> for the story and the <a href="${ATLAS}">proof atlas</a> for the details.</p>
 </section>
 
 <section class="card controls" aria-label="Simulation controls">
@@ -189,7 +189,7 @@ main.innerHTML = `
     <span id="status" class="status" role="status"></span>
   </div>
   <p class="small">Each trial samples a fresh graph and colouring from a seed derived from (seed, N, p, τ, trial index), so every result is reproducible and shareable via the URL.
-  In-browser runs are capped at <i>pN</i>·<i>N</i> ≤ ${d3.format('.2~s')(MAX_ADJ)} adjacency entries; larger runs come from the offline sweep.</p>
+  In-browser runs are capped at <i>pN</i>·<i>N</i> ≤ ${d3.format('.2~s')(MAX_ADJ)} adjacency entries. Bigger runs come from the offline sweep.</p>
 </section>
 
 <section class="card">
@@ -199,14 +199,14 @@ main.innerHTML = `
   </div>
   <div id="chartLead" class="chart-box"></div>
   <div id="leadSummary" class="summary"></div>
-  <p>If the graph were resampled every day, a vertex would compare <i>X</i><sub>+</sub> ~ Bin((<i>N</i>+Δ)/2, <i>p</i>) with <i>X</i><sub>−</sub> ~ Bin((<i>N</i>−Δ)/2, <i>p</i>);
-  the central limit theorem gives a vote bias ≈ √(2/π)·<i>p</i>Δ/√(<i>pN</i>), hence Δ<sub>next</sub> ≈ √(2/π)·Δ·√(<i>pN</i>)
-  (<a href="${ESSAY}">essay, “If the randomness were refreshed every day”</a>). The dashed grey line iterates this from the median initial lead; the dotted line keeps the
-  saturating form <i>N</i>(2Φ(<i>p</i>Δ/√(<i>p</i>(1−<i>p</i>)<i>N</i>)) − 1). The real graph is <em>not</em> resampled: after day 1 the opinions condition the edges, which is what the
-  proof's opinion-history classes (<a href="${ATLAS}#iterative-degree-revelation">§1.2.1</a>) handle. The paper proves Δ<sub><i>k</i>+1</sub> = (<i>c<sub>k</sub></i> + <i>o</i>(1))Δ<sub><i>k</i></sub>√(<i>pN</i>)
+  <p>If the graph were resampled every day, a vertex would compare <i>X</i><sub>+</sub> ~ Bin((<i>N</i>+Δ)/2, <i>p</i>) with <i>X</i><sub>−</sub> ~ Bin((<i>N</i>−Δ)/2, <i>p</i>).
+  The central limit theorem gives a vote bias of about √(2/π)·<i>p</i>Δ/√(<i>pN</i>), so Δ<sub>next</sub> ≈ √(2/π)·Δ·√(<i>pN</i>)
+  (<a href="${ESSAY}">essay, “If the randomness were refreshed every day”</a>). The dashed grey line applies this day after day, starting from the median initial lead. The dotted line uses the
+  saturating form <i>N</i>(2Φ(<i>p</i>Δ/√(<i>p</i>(1−<i>p</i>)<i>N</i>)) − 1). But the real graph is never resampled. After day 1 the opinions carry information about the edges, and the
+  proof's opinion-history classes (<a href="${ATLAS}#iterative-degree-revelation">§1.2.1</a>) are how it deals with that. The paper proves Δ<sub><i>k</i>+1</sub> = (<i>c<sub>k</sub></i> + <i>o</i>(1))Δ<sub><i>k</i></sub>√(<i>pN</i>)
   with <i>c<sub>k</sub></i> &gt; 0 but not necessarily √(2/π) (<a href="${ATLAS}#the-lead">§5.4</a>). Once the lead passes the handoff scale ≈ <i>N</i>/√(<i>pN</i>) (up to logarithms),
   the pseudorandomness argument of Chakraborti–Kim–Lee–Tran takes over and the minority contracts by a factor <i>O</i>(1/(<i>pN</i>)) per day
-  (<a href="${ATLAS}#contraction-phase">§1.2.4</a>, <a href="${ATLAS}#the-contraction-phase">§6.1</a>). The orange curves show that contraction; an open dot on the “0” row marks unanimity.</p>
+  (<a href="${ATLAS}#contraction-phase">§1.2.4</a>, <a href="${ATLAS}#the-contraction-phase">§6.1</a>). The orange curves show that contraction, and an open dot on the “0” row marks unanimity.</p>
 </section>
 
 <section class="card">
@@ -216,30 +216,30 @@ main.innerHTML = `
   </div>
   <div id="chartAmp" class="chart-box"></div>
   <p>Each point is the mean of Δ<sub><i>t</i>+1</sub>/Δ<sub><i>t</i></sub> over trials (bars: ±2 standard errors), kept only while Δ<sub><i>t</i>+1</sub> ≤ 0.1<i>N</i>
-  so that saturation does not masquerade as weaker amplification. On the first update the graph is genuinely independent of the opinions, so the solid blue curve is the
-  <em>exact</em> expectation 𝔼[Δ₂]/Δ₁ (binomial sums, keep-on-tie rule included); it exceeds √(2/π)√(<i>pN</i>) at small <i>pN</i> because ties are broken toward the
-  vertex's own opinion. From day 2 on the edges are conditioned on the past, and the measured constant need not be √(2/π) ≈ ${FRESH_CONST.toFixed(4)}; the paper's
+  so that saturation doesn't look like weaker amplification. On the first update the graph really is independent of the opinions, so the solid blue curve is the
+  <em>exact</em> expectation 𝔼[Δ₂]/Δ₁ (binomial sums, with the keep-on-tie rule). It sits above √(2/π)√(<i>pN</i>) at small <i>pN</i> because ties are broken toward the
+  vertex's own opinion. From day 2 on, the edges depend on the past, so the measured constant doesn't have to be √(2/π) ≈ ${FRESH_CONST.toFixed(4)}. The paper's
   <i>c<sub>k</sub></i> come from the linear response of a Gaussian recursion (<a href="${ATLAS}#sec:universal">§4</a>). These are finite-<i>N</i> estimates, not limits.</p>
 </section>
 
 <section class="card">
   <h2><span class="tag">c</span> Days to unanimity vs θ</h2>
   <div id="chartDays" class="chart-box"></div>
-  <p>Dots are trials (jittered), diamonds medians, “<i>k</i>✕” counts trials that did not end unanimous for the initial majority. The red staircase is Theorem 1.1's
-  <i>k</i>(θ) = 2⌊1/(1−θ)⌋ + 3. It is an <em>upper bound that holds with probability 1 − o(1) as N → ∞</em>, for fixed θ: roughly ⌊1/(1−θ)⌋ + 1 days
+  <p>Dots are single trials (jittered) and diamonds are medians. “<i>k</i>✕” counts trials that didn't end unanimous for the initial majority. The red staircase is Theorem 1.1's
+  <i>k</i>(θ) = 2⌊1/(1−θ)⌋ + 3. It's an <em>upper bound that holds with probability 1 − o(1) as N → ∞</em>, for fixed θ. That's roughly ⌊1/(1−θ)⌋ + 1 days
   to amplify a √<i>N</i> lead past the handoff scale, and at most ⌊1/(1−θ)⌋ + 1 more for contraction (<a href="${ATLAS}#contraction-phase">§1.2.4</a>).
-  It is not claimed to be sharp, and at a fixed finite <i>N</i> neither the bound nor the success guarantee need hold; here θ is the effective exponent
+  Nobody claims it's sharp, and at any fixed finite <i>N</i> neither the bound nor the success guarantee has to hold. Here θ is the effective exponent
   1 − log(<i>pN</i>)/log <i>N</i>.</p>
 </section>
 
 <section class="card">
   <h2><span class="tag">d</span> Does the initial majority win? <span class="open-badge">open regime: empirical exploration</span></h2>
   <div id="chartSuccess" class="chart-box"></div>
-  <p>The fraction of trials ending with the initial majority unanimous (bars: 95% Wilson intervals). For every fixed θ &lt; 1 the paper proves this tends to 1;
-  for sub-polynomial degree such as <i>pN</i> = log <i>N</i> or (log <i>N</i>)² <strong>the question is open</strong>, and the shaded region is only a finite-<i>N</i>
-  exploration, not evidence about the limit. One obstruction is elementary: an isolated vertex never changes its opinion, so unanimity needs no isolated vertex in the initial
-  minority. The dotted curves are the Poisson heuristic exp(−<i>m</i>(1−<i>p</i>)<sup><i>N</i>−1</sup>), <i>m</i> the minority size, for this event, an upper bound on
-  success; at <i>pN</i> = log <i>N</i> it is about <i>e</i><sup>−1/2</sup>. Degree-1 and other low-degree vertices create further local obstructions, which is one reason the
+  <p>The fraction of trials ending with the initial majority unanimous (bars: 95% Wilson intervals). For every fixed θ &lt; 1 the paper proves this tends to 1.
+  For sub-polynomial degree such as <i>pN</i> = log <i>N</i> or (log <i>N</i>)² <strong>the question is open</strong>, and the shaded region is only a finite-<i>N</i>
+  exploration, not evidence about the limit. One obstacle is simple. An isolated vertex never changes its opinion, so unanimity needs no isolated vertex in the initial
+  minority. The dotted curves show the Poisson estimate exp(−<i>m</i>(1−<i>p</i>)<sup><i>N</i>−1</sup>) for this event, where <i>m</i> is the minority size. It's an upper bound on
+  success, and at <i>pN</i> = log <i>N</i> it's about <i>e</i><sup>−1/2</sup>. Degree-1 and other low-degree vertices cause more local trouble, which is one reason the
   conjecture is phrased with <i>pN</i> → ∞ and sometimes as near-unanimity.</p>
 </section>
 
@@ -249,7 +249,7 @@ main.innerHTML = `
   <p class="small">The simulator (<code>src/lab/sim.ts</code>) samples <i>G</i>(<i>N</i>,&thinsp;<i>p</i>) by the geometric-skip method of Batagelj and Brandes (2005) into compressed sparse row
   arrays, with a seeded xoshiro128** generator, then applies the update rule exactly with integer neighbour sums. A run stops at unanimity, at a fixed point or
   2-cycle (synchronous majority dynamics with symmetric weights always reaches period ≤ 2, Goles–Olivos 1980), or at the day cap. Precomputed larger-<i>N</i> runs are produced by
-  <a href="${REPO_SCRIPT}"><code>scripts/lab/sweep.ts</code></a> from the same code (<code>npm run lab:sweep</code>). Hollow markers are offline results; filled markers are yours.</p>
+  <a href="${REPO_SCRIPT}"><code>scripts/lab/sweep.ts</code></a> from the same code (<code>npm run lab:sweep</code>). Hollow markers are offline results and filled markers are yours.</p>
 </section>
 `;
 
@@ -309,12 +309,12 @@ function updateDerived(): void {
     <span><i>pN</i> = ${d3.format('.4~g')(pn)}</span>
     <span><i>p</i> = ${d3.format('.3~e')(pn / c.n)}</span>
     <span>θ<sub>eff</sub> = ${theta.toFixed(3)}</span>
-    <span><i>k</i>(θ) = ${theta > 0.5 && theta < 1 ? theoremDays(theta) : '—'}</span>
+    <span><i>k</i>(θ) = ${theta > 0.5 && theta < 1 ? theoremDays(theta) : 'n/a'}</span>
     <span>Δ₁ = ${d0}</span>
     <span>amplification √(2/π)√(<i>pN</i>) ≈ ${(FRESH_CONST * Math.sqrt(pn)).toFixed(2)}</span>
     <span>handoff <i>N</i>/√(<i>pN</i>) ≈ ${d3.format('.3~s')(c.n / Math.sqrt(pn))}</span>
     <span>log <i>N</i> = ${Math.log(c.n).toFixed(2)}</span>
-    <span class="${tooBig ? 'warn' : ''}">≈ ${d3.format('.3~s')(adj / 2)} edges, ${d3.format('.3~s')(adj * 4 + c.n * 10)}B${tooBig ? ' — too large for the browser; lower N or pN' : ''}</span>`;
+    <span class="${tooBig ? 'warn' : ''}">≈ ${d3.format('.3~s')(adj / 2)} edges, ${d3.format('.3~s')(adj * 4 + c.n * 10)}B${tooBig ? ' (too big for the browser, so lower N or pN)' : ''}</span>`;
   runBtn.disabled = tooBig || runner.busy;
 }
 
@@ -369,7 +369,7 @@ function leadSummary(run: RunResult | null): string {
   return `<p><b>N</b> = ${d3.format(',')(run.spec.n)}, <b>pN</b> = ${d3.format('.4~g')(pnOf(run.spec))}, θ<sub>eff</sub> = ${theta.toFixed(3)}${theta > 0.5 && theta < 1 ? `, k(θ) = ${theoremDays(theta)}` : ''}, ${run.trials.length} trials.
     Outcomes: ${[...counts].map(([k, v]) => `${v} ${label[k]}`).join(', ')}${sp.isolatedBlocked ? ` (${sp.isolatedBlocked} with an isolated minority vertex)` : ''}.
     ${days.length ? `Unanimity day: median ${d3.median(days)}, range ${days[0]}–${days[days.length - 1]}.` : ''}</p>
-    ${amp ? `<p>Mean amplification ${amp}; fresh-graph √(2/π)√(pN) = ${(FRESH_CONST * Math.sqrt(pnOf(run.spec))).toFixed(2)}.</p>` : ''}`;
+    ${amp ? `<p>Mean amplification ${amp}. The fresh-graph prediction √(2/π)√(pN) is ${(FRESH_CONST * Math.sqrt(pnOf(run.spec))).toFixed(2)}.</p>` : ''}`;
 }
 
 let raf = 0;
@@ -481,7 +481,7 @@ fetch(DATA_URL)
     const trials = d.runs.reduce((a, r) => a + r.trials.length, 0);
     const ns = [...new Set(d.runs.map((r) => r.spec.n))].sort((a, b) => a - b);
     $<HTMLDivElement>('#dataInfo').innerHTML = `<p>Loaded <code>${DATA_URL.replace('../', '')}</code>: ${d.runs.length} runs, ${d3.format(',')(trials)} trials at N ∈ {${ns.map(fmtPow10).join(', ')}},
-      generated ${d.generatedAt.slice(0, 10)} by <code>${d.command}</code> (${d.generator}); ${d3.format(',.0f')(d3.sum(d.runs, (r) => r.seconds) / 60)} CPU-minutes.</p>`;
+      generated ${d.generatedAt.slice(0, 10)} by <code>${d.command}</code> (${d.generator}), using ${d3.format(',.0f')(d3.sum(d.runs, (r) => r.seconds) / 60)} CPU-minutes.</p>`;
     fillLeadSource();
     if (!userRun) leadSource.value = String(offlineRuns().findIndex((r) => r.group === 'theta' && Math.abs(thetaOf(r.spec) - 0.7) < 1e-6));
     if (leadSource.value === '') leadSource.value = 'user';

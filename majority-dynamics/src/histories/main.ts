@@ -30,7 +30,7 @@ main.innerHTML = `
   <p class="hx-lede">Goel and Sah prove that on <i>G</i>(<i>N</i>, <i>p</i>) with <i>p</i> ≈ <i>N</i><sup>−θ</sup>, θ ∈ (1/2, 1),
   majority dynamics started from a lead of order √<i>N</i> reaches unanimity within
   <i>k</i> = 2⌊1/(1−θ)⌋ + 3 days with high probability (${paper(2, 'Theorem 1.1')}).
-  This page runs the process on real sampled graphs, in your browser, and displays the objects the proof keeps track of:
+  This page runs the process on real sampled graphs, in your browser, and shows the objects the proof keeps track of:
   opinion-history classes, the edge counts between them, and the degree sequences those counts constrain.</p>
   <nav class="hx-toc" aria-label="Sections">
     <a href="#hx-tree">1 · History tree</a><a href="#hx-matrix">2 · Block pairs</a>
@@ -52,15 +52,15 @@ main.innerHTML = `
   <div class="hx-prose">
     <p><b>The process.</b> Each vertex holds an opinion <span class="hx-p">+</span> or <span class="hx-m">−</span>. Day 1 is the initial coloring:
     exactly ⌊<i>N</i>/2⌋ + ⌊τ√<i>N</i>⌋ vertices hold <span class="hx-p">+</span>, placed uniformly at random, so the lead is
-    Δ<sub>1</sub> ≈ 2τ√<i>N</i>. On every later day all vertices update simultaneously to the strict majority opinion among their neighbours;
-    a tie (including an isolated vertex) keeps the current opinion. The graph is sampled once and reused every day.</p>
+    Δ<sub>1</sub> ≈ 2τ√<i>N</i>. On every later day all vertices update simultaneously to the strict majority opinion among their neighbours.
+    On a tie (which includes an isolated vertex) a vertex keeps its current opinion. The graph is sampled once and reused every day.</p>
     <p><b>Why this is hard.</b> If a new graph were drawn every day, the day-(<i>t</i>+1) opinion of each vertex would be a comparison of two
     independent binomials, and the lead would grow by the factor √(2/π)·√(<i>pN</i>) per day (${essay('s3', 'essay: “If the randomness were refreshed every day”')}).
     On a fixed graph, the opinion a vertex adopted on day <i>t</i> is a statement about its own edges, so the next update is not a fresh draw
     (${essay('s4', '“The same graph, one day later”')}). The proof controls this by recording, after each day, exactly what has been revealed.</p>
     <div class="hx-callout">Everything below is computed from one concrete graph and coloring (and, for §4, an ensemble of them).
-    These are illustrations of finite-<i>N</i> behaviour, not evidence for the asymptotic statement, and the classes you see are the
-    exact combinatorial objects in the paper rather than an approximation.</div>
+    They illustrate finite-<i>N</i> behaviour and aren't evidence for the asymptotic statement. The classes you see are the
+    exact combinatorial objects from the paper, not an approximation.</div>
   </div>
 </section>
 
@@ -70,13 +70,13 @@ main.innerHTML = `
     <p>After <i>t</i> days, each vertex <i>x</i> has an <b>opinion history</b> (<i>c</i><sub>1</sub>(<i>x</i>), …, <i>c<sub>t</sub></i>(<i>x</i>)) ∈ {±1}<sup><i>t</i></sup>.
     Vertices with the same history form a <b>history class</b>, so the vertex set is partitioned into at most 2<sup><i>t</i></sup> classes, and the
     day-<i>t</i> partition refines the day-(<i>t</i>−1) one. The paper's state after <i>t</i> days is this partition together with the degree of every vertex
-    into every class (${paper(8, '§2.2, state spaces')}; ${atlas('prop:state-chain', 'atlas: Prop. 2.3, state chain')}).
+    into every class (${paper(8, '§2.2, state spaces')}, ${atlas('prop:state-chain', 'atlas: Prop. 2.3, state chain')}).
     </p>
-    <p>Each row of the figure is one day. A bar is a class; its children on the next row are the vertices of that class that then chose
+    <p>Each row of the figure is one day. A bar is a class, and its children on the next row are the vertices of that class that then chose
     <span class="hx-p">+</span> (left) or <span class="hx-m">−</span> (right). In <i>proportional</i> mode widths are class sizes, so you can watch mass
     concentrate on the all-<span class="hx-p">+</span> branch while the dynamics amplifies the lead. <i>Binary</i> mode gives every possible history
     the same width, which makes empty (hatched) and negligible classes visible.</p>
-    <p>The ± split is almost even for several days: the lead is only a √<i>N</i>(√<i>pN</i>)<sup><i>t</i>−1</sup>-sized perturbation of <i>N</i>/2.
+    <p>The ± split stays almost even for several days, because the lead is only a √<i>N</i>(√<i>pN</i>)<sup><i>t</i>−1</sup>-sized perturbation of <i>N</i>/2.
     What matters is the sign of the tiny bias inside every class. Hover a bar for its normalized response
     ε̂ = (|<i>C</i><sup>+</sup>| − |<i>C</i><sup>−</sup>|) / (τ√<i>N</i>(√<i>pN</i>)<sup><i>t</i>−1</sup>) per unit mass. The paper's idealized recursion predicts
     these responses (${atlas('thm:idealized-process', 'Theorem 5.2')}), and its coherence statement says mirror classes respond with opposite signs
@@ -92,7 +92,7 @@ main.innerHTML = `
     <div class="hx-card"><div id="t-host" role="img" aria-label="History tree"></div></div>
     <p class="hx-caption" id="t-caption"></p>
     <table class="hx-table"><thead><tr><th>day</th><th>mirror pairs with the predicted sign pattern</th><th>exceptions</th></tr></thead><tbody id="t-coh"></tbody></table>
-    <p class="hx-note">A mirror pair is (<i>h</i>, −<i>h</i>) with both classes of size ≥ 2000; “predicted sign pattern” means the
+    <p class="hx-note">A mirror pair is (<i>h</i>, −<i>h</i>) with both classes of size ≥ 2000. “Predicted sign pattern” means the
     <span class="hx-p">+</span>-fraction of each child split lies on the side predicted by the class's last opinion.</p>
   </div>
 </section>
@@ -105,13 +105,13 @@ main.innerHTML = `
     In <i>G</i>(<i>N</i>,<i>p</i>) with a partition chosen independently of the graph, every ρ is 1 up to fluctuations of order
     1/√(|<i>A</i>||<i>B</i>|<i>p</i>). Switch the source to <b>resampled</b> to see exactly that: the same partition laid over an independent graph.</p>
     <p>On the real graph the partition is <i>not</i> independent of the edges. A vertex in class <span class="mono">−+</span> changed its mind because it
-    had more day-1 <span class="hx-p">+</span> neighbours than <span class="hx-m">−</span> neighbours, so in total it is enriched towards the
+    had more day-1 <span class="hx-p">+</span> neighbours than <span class="hx-m">−</span> neighbours, so overall it leans towards the
     <span class="mono">+·</span> classes (§3). Individual cells mix in a second effect: a neighbour's day-2 vote also counted the vertex's own day-1
-    opinion, which is why, e.g., <span class="mono">−+</span> is over-connected to <span class="mono">+−</span> but not to <span class="mono">++</span>. The deviations are of relative size about 1/√(<i>pN</i>), which is why the <i>z</i>-score view,
-    (<i>e</i> − E<i>e</i>)/√Var, is the honest way to see them: they are many standard deviations of the fresh-graph fluctuation, although the ratios look close to 1.</p>
+    opinion, which is why, for example, <span class="mono">−+</span> is over-connected to <span class="mono">+−</span> but not to <span class="mono">++</span>. The deviations are of relative size about 1/√(<i>pN</i>), which is why the <i>z</i>-score view,
+    (<i>e</i> − E<i>e</i>)/√Var, is the honest way to see them. They're many standard deviations away from fresh-graph noise, even though the ratios look close to 1.</p>
     <p>Conditioned on the whole state (partition plus degree arrays), the paper shows the graph is uniform on each block pair among graphs with the prescribed
-    degrees, independently across pairs (${atlas('prop:state-chain', 'Prop. 2.3')}; ${atlas('prop:coarse-one-step', 'coarse one-step')}). So the heatmap is a coarse
-    summary of the information the proof conditions on; the exact state is the degree array in §3.</p>
+    degrees, independently across pairs (${atlas('prop:state-chain', 'Prop. 2.3')}, ${atlas('prop:coarse-one-step', 'coarse one-step')}). So the heatmap is a rough
+    summary of what the proof conditions on. The exact state is the degree array in §3.</p>
     <p class="hx-src">Essay: ${essay('s4', '“The same graph, one day later”')}. Paper: ${paper(10, 'Proposition 2.3')}, ${paper(12, 'Proposition 2.4')}.</p>
   </div>
   <div class="hx-figure">
@@ -171,7 +171,7 @@ main.innerHTML = `
     often on the fixed graph than with a new graph.</p>
     <p>This is why the proof cannot iterate the fresh heuristic. It tracks the exact conditioned law of the state: the tilted row model builds in
     the previous majority decisions as linear constraints, and the resulting deterministic recursion for the class responses has different
-    coefficients from the naive one (${essay('s6', 'essay: “Tracking the lead…”')}; ${atlas('thm:idealized-process', 'Theorem 5.2')};
+    coefficients from the naive one (${essay('s6', 'essay: “Tracking the lead…”')}, ${atlas('thm:idealized-process', 'Theorem 5.2')},
     ${atlas('cor:lead', 'Corollary 5.9')}). What survives is the order of growth, a factor Θ(√(<i>pN</i>)) per day, which is what the
     day count <i>k</i> depends on.</p>
   </div>
@@ -194,12 +194,12 @@ main.innerHTML = `
     <p><b>Expansion phase.</b> For about ⌊1/(1−θ)⌋ + 1 days the degree-revelation state is tracked exactly: the lead grows by roughly √(<i>pN</i>) per day,
     and the idealized process of ${atlas('thm:idealized-process', 'Theorem 5.2')} keeps the class responses close to a deterministic recursion. Here that is
     <span id="n-exp"></span>. The first day is handled separately (${atlas('prop:day-one', 'day one')}).</p>
-    <p><b>Handoff and contraction.</b> Once the lead is of order <i>N</i>/√(<i>pN</i>) (up to logarithms; dotted line in §4), the argument leaves the history
-    bookkeeping and uses pseudorandomness of the graph and a contraction estimate to finish (${atlas('thm:edge-day', 'edge day')};
-    ${atlas('lem:cklt-contraction', 'contraction lemma')}; ${essay('s7', 'essay: “From amplification to unanimity”')}).</p>
+    <p><b>Handoff and contraction.</b> Once the lead is of order <i>N</i>/√(<i>pN</i>) (up to logarithms, dotted line in §4), the argument leaves the history
+    bookkeeping and uses pseudorandomness of the graph and a contraction estimate to finish (${atlas('thm:edge-day', 'edge day')},
+    ${atlas('lem:cklt-contraction', 'contraction lemma')}, ${essay('s7', 'essay: “From amplification to unanimity”')}).</p>
     <p><b>Limits of this page.</b> The simulations use finite <i>N</i> ≤ 10<sup>5</sup>, where √(<i>pN</i>) is only about 7–13, so the separation of scales in the
-    proof is modest; logarithmic factors and “with high probability” statements are invisible at one seed. The block-pair view pools small
-    classes. Nothing here checks the enumeration estimates or the Gaussian approximations; those are proved in the paper and, in part,
+    proof is modest. Logarithmic factors and “with high probability” statements are invisible at one seed. The block-pair view pools small
+    classes. Nothing here checks the enumeration estimates or the Gaussian approximations. Those are proved in the paper and
     formalized in <a href="${LEAN}" target="_blank" rel="noopener">Lean</a>.</p>
     <p class="hx-src">Sources: <a href="${ESSAY}" target="_blank" rel="noopener">essay</a> · <a href="${PAPER}" target="_blank" rel="noopener">paper (PDF)</a> ·
     <a href="${ARXIV}" target="_blank" rel="noopener">arXiv:2609.14957</a> · <a href="${ATLAS}" target="_blank" rel="noopener">proof atlas</a> ·
@@ -207,7 +207,7 @@ main.innerHTML = `
   </div>
 </section>
 
-<footer>Simulator: xoshiro128** seeded from (seed, stream); <i>G</i>(<i>N</i>,<i>p</i>) sampled by geometric skipping into CSR adjacency; all work in Web Workers.
+<footer>Simulator: xoshiro128** seeded from (seed, stream), with <i>G</i>(<i>N</i>,<i>p</i>) sampled by geometric skipping into CSR adjacency. Everything runs in Web Workers.
 Every figure is reproducible from the parameters in the toolbar.</footer>
 `;
 
@@ -265,7 +265,7 @@ function updateDerived(): void {
   const m = expectedEdges(N, theta);
   ui.derived.innerHTML = `p = ${fmtSig(p)}, pN = ${fmt2(p * N)}, k = ${theoremDays(theta)} days, E|E| ≈ ${fmtSig(m)}`;
   ui.run.disabled = m > MAX_EXPECTED_EDGES;
-  if (m > MAX_EXPECTED_EDGES) ui.status.textContent = 'too many edges for the browser; lower N or raise θ';
+  if (m > MAX_EXPECTED_EDGES) ui.status.textContent = 'too many edges for the browser, try a lower N or a higher θ';
 }
 
 function options(sel: HTMLSelectElement, items: { value: string; label: string }[], keep?: string): void {
@@ -433,7 +433,7 @@ async function simulate(): Promise<void> {
     if (!ui.dDay.value) ui.dDay.value = '2';
     fillDegreeSelectors(true);
     const e = expansionDays(r.params.theta);
-    el('n-exp').innerHTML = `${e} days for θ = ${r.params.theta}, out of k = ${r.days}; the heuristic factor is
+    el('n-exp').innerHTML = `${e} days for θ = ${r.params.theta}, out of k = ${r.days}. The heuristic factor is
       √(2/π)·√(pN) = ${fmt2(heuristicFactor(r.params.N, r.p))} and the handoff scale N/√(pN) = ${fmtInt(r.params.N / Math.sqrt(r.p * r.params.N))}`;
     drawTree();
     ui.status.textContent = `${fmtInt(r.edges)} edges, lead ${fmtInt(r.leads[0])} → ${fmtInt(r.leads[r.days - 1])} (ε ≈ ${fmt3(r.leads[0] / r.params.N)})`;

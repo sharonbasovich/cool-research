@@ -169,7 +169,7 @@ export function renderDegrees(host: HTMLElement, decisionHost: HTMLElement, r: D
       { xLabel: `Σ_{y∼x} c_${r.day - 1}(y): the imbalance behind the day-${r.day} opinion`, zeroLine: true },
     );
   } else {
-    decisionHost.textContent = 'Day 1 is the initial coloring; no decision has been recorded yet.';
+    decisionHost.textContent = 'Day 1 is the initial coloring, so there is no decision to show yet.';
   }
   return s;
 }

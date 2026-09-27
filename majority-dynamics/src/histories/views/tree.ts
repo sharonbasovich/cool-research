@@ -193,7 +193,7 @@ export function coherenceSummary(sizes: Float64Array[], minSize: number): string
     .map(
       (r) =>
         `<tr><td>day ${r.day}</td><td>${r.coherent} / ${r.pairs}</td><td>${
-          r.failures.length ? r.failures.map(historyHtml).join(', ') : '—'
+          r.failures.length ? r.failures.map(historyHtml).join(', ') : 'none'
         }</td></tr>`,
     )
     .join('');
