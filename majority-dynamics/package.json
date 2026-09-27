@@ -9,10 +9,12 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "extract:proof-map": "tsx scripts/proof-map/extract.ts"
   },
   "dependencies": {
-    "d3": "^7.9.0"
+    "d3": "^7.9.0",
+    "katex": "0.18.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -20,6 +22,8 @@
     "@types/node": "^26.6.1",
     "eslint": "^10.11.0",
     "globals": "^17.12.0",
+    "node-html-parser": "9.0.4",
+    "tsx": "4.23.13",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
     "vite": "^8.3.0",

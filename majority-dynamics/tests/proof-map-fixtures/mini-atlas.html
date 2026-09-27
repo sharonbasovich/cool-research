@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head>
+<script>
+window.MathJax={tex:{macros:{mb:['\\mathbb{#1}',1],eps:'\\varepsilon'}}};
+</script>
+</head><body>
+<main class="reader-wrap"><article class="paper" id="paper">
+<h1 id="sec:introduction" data-section="1" data-page="1"><span class="section-number">1</span> Introduction</h1>
+<h2 id="main-result" data-section="1.1" data-page="2"><span class="section-number">1.1</span> Main result</h2>
+<article class="paper-unit" id="unit-thm:main" data-audit-node="thm11"><div id="thm:main" class="theorem" data-label="thm:main">
+<p><strong>Theorem 1.1</strong> (the main theorem). <em>Majority wins on <span class="math inline">\(\mb G(N,p)\)</span>.</em></p>
+</div>
+<aside class="evidence" data-audit-node="thm11">
+  <div class="moral"><span class="eyebrow">moral</span><p>The lead is amplified by <span class="math inline">\(\sqrt{pN}\)</span> per day.</p></div>
+  <div class="source-grid" aria-label="Sources for Theorem 1.1 — the main theorem">
+    <div class="source-group current"><div class="chip-list"><a class="source-chip chip pdf-link new" href="pdf-viewer.html?file=new.pdf#page=3&amp;target=label%2Fthm%3Amain" data-pdf="new" data-page="3" data-dest="label/thm:main"><span>Theorem 1.1</span><small>new p.3</small></a></div></div>
+    <div class="source-group historical"><div class="chip-list"><a class="source-chip chip pdf-link old" href="pdf-viewer.html?file=old.pdf#page=15&amp;target=label%2Fthm%3Afull" data-pdf="old" data-page="15" data-dest="label/thm:full"><span>Theorem 5.1</span><small>old p.15</small></a></div></div>
+    <div class="source-group formal"><div class="lean-list"><a class="lean-link" href="https://github.com/gopalkgoel/sparse-majority-dynamics-lean/blob/4d607ff1d4ab468476bd7caa40d3c89199dde102/MajorityDynamics/Paper/Main.lean#L12"><code>MajorityDynamics.Paper.main</code><small>headline</small></a></div></div>
+  </div>
+  <details class="audit-notes"><summary>what changed</summary><div class="audit-copy">
+    <aside class="callout gap"><strong>gap in old paper</strong><div>The old proof skipped a step.</div></aside>
+  </div></details>
+</aside>
+<details class="proof-toggle" id="proof-thm:main"><summary>Read proof</summary><div class="proof">
+<p><em>Proof.</em> Combine Lemma 2.1 with Theorem 2.8.4 of <span class="citation" data-cites="Ver18">(Vershynin 2018)</span>.</p>
+</div></details>
+</article>
+<h1 id="sec:setup" data-section="2" data-page="5"><span class="section-number">2</span> Setup</h1>
+<article class="paper-unit" id="unit-def:hist" data-audit-node="def21"><div id="def:hist" class="definition" data-label="def:hist">
+<p><strong>Definition 2.2</strong>. <em>An opinion history is a word in <span class="math inline">\(\{\pm\}^k\)</span>.</em></p>
+</div>
+<aside class="evidence"><div class="moral"><p>Remember only the histories.</p></div>
+  <div class="source-grid" aria-label="Sources for Definition 2.2"><div class="source-group historical"><span class="source-label">PRE-AI PAPER</span><div class="chip-list"></div></div></div>
+</aside>
+</article>
+<article class="paper-unit" id="unit-lem:enum" data-audit-node="lem21"><div id="lem:enum" class="lemma" data-label="lem:enum">
+<p><strong>Lemma 2.1</strong> (<span class="citation" data-cites="LW17">[LW17]</span>, Theorem 1.4). <em>Graphs with histories as in Definition 2.2 can be enumerated.</em></p>
+</div>
+<aside class="evidence"><div class="moral"><p>Enumeration.</p></div></aside>
+</article>
+<p>This refines <span class="citation" data-cites="MW90">(McKay and Wormald 1990)</span>.</p>
+<div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-LW17" class="csl-entry">Liebenau, Anita, and Nick Wormald. 2024. “Asymptotic Enumeration of Digraphs and Bipartite Graphs by Degree Sequence.” <em>Random Structures Algorithms</em>. <a href="https://doi.org/10.1002/rsa.21105">https://doi.org/10.1002/rsa.21105</a></div>
+<div id="ref-MW90" class="csl-entry">McKay, Brendan D., and Nicholas C. Wormald. 1990. “Asymptotic Enumeration by Degree Sequence of Graphs of High Degree.”</div>
+<div id="ref-MW97" class="csl-entry">———. 1997. “The Degree Sequence of a Random Graph.”</div>
+<div id="ref-Ver18" class="csl-entry">Vershynin, Roman. 2018. <em>High-Dimensional Probability</em>.</div>
+</div>
+</article></main></body></html>

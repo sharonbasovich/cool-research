@@ -1,0 +1,130 @@
+.page.pm-page { max-width: 1480px; }
+.pm-loading, .pm-error { padding: 3rem 0; color: #666; }
+.pm-error { color: #a33; }
+.pm-hero h1 { margin: 0.2rem 0 0.4rem; font-size: 2rem; letter-spacing: -0.01em; }
+.pm-lede { max-width: 62rem; margin: 0 0 0.9rem; color: #333; }
+.pm-numbers { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin: 0 0 1rem; }
+.pm-numbers div { display: flex; flex-direction: column-reverse; }
+.pm-numbers dt { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 0.05em; }
+.pm-numbers dd { margin: 0; font-size: 1.35rem; font-variant-numeric: tabular-nums; font-weight: 600; }
+.pm-tabs { display: flex; gap: 0.25rem; border-bottom: 1px solid #ddd; margin-bottom: 0.8rem; }
+.pm-tabs button { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: 0.45rem 0.9rem; cursor: pointer; color: #555; }
+.pm-tabs button[aria-selected='true'] { color: #111; border-bottom-color: #b3312c; font-weight: 600; }
+.pm-body { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 1rem; align-items: start; }
+@media (max-width: 1000px) { .pm-body { grid-template-columns: 1fr; } }
+.pm-views { min-width: 0; }
+.pm-panel { position: sticky; top: 0.75rem; max-height: calc(100vh - 1.5rem); overflow: auto; background: #fff; border: 1px solid #e3e0d8; border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.9rem; }
+.pm-panel h3 { margin: 0.1rem 0; font-size: 1.25rem; }
+.pm-panel h4 { margin: 0.9rem 0 0.35rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #666; }
+.pm-panel section p { margin: 0.3rem 0; }
+.pm-kicker { font-size: 0.78rem; color: #666; display: flex; align-items: center; gap: 0.35rem; }
+.pm-kicker i, .pm-chip i, .pm-leg i, .pm-results i, .pm-areas i { display: inline-block; width: 0.65rem; height: 0.65rem; border-radius: 50%; flex: none; }
+.pm-title { margin: 0.1rem 0 0.2rem; font-style: italic; color: #333; }
+.pm-modname { word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1rem !important; }
+.pm-links a { font-weight: 600; }
+.pm-moral p { background: #f7f4ec; border-left: 3px solid #d9c9a3; padding: 0.5rem 0.65rem; margin: 0; }
+.pm-statement { margin-top: 0.7rem; }
+.pm-statement summary { cursor: pointer; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #666; }
+.pm-statement div { padding: 0.4rem 0; overflow-x: auto; }
+.pm-muted { color: #888; font-weight: normal; }
+.pm-count { color: #999; font-weight: normal; }
+.pm-src { display: inline-block; margin: 0 0.35rem 0.3rem 0; padding: 0.15rem 0.5rem; border: 1px solid #ddd; border-radius: 4px; text-decoration: none; color: inherit; }
+.pm-src:hover { border-color: #b3312c; }
+.pm-src span { color: #888; font-size: 0.8em; }
+.pm-lean { list-style: none; padding: 0; margin: 0; }
+.pm-lean li { margin-bottom: 0.55rem; }
+.pm-lean code { font-size: 0.85em; word-break: break-all; }
+.pm-lean pre { margin: 0.2rem 0; padding: 0.35rem 0.5rem; background: #f4f3ef; border-radius: 4px; font-size: 0.75rem; white-space: pre-wrap; word-break: break-word; max-height: 7.5rem; overflow: auto; }
+.pm-note { display: block; color: #666; font-size: 0.82em; }
+.pm-path { display: block; color: #999; font-size: 0.75em; font-family: ui-monospace, monospace; }
+.pm-chip { font: inherit; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem; margin: 0 0.3rem 0.3rem 0; padding: 0.12rem 0.5rem; border: 1px solid #ddd; border-radius: 999px; background: #fff; cursor: pointer; }
+.pm-chip:hover { border-color: #888; }
+.pm-chip-mod { font-family: ui-monospace, monospace; font-size: 0.72rem; border-radius: 4px; }
+.pm-callout { margin: 0.35rem 0; padding: 0.4rem 0.55rem; border-radius: 4px; background: #f3f1ec; border-left: 3px solid #aaa; font-size: 0.85rem; }
+.pm-callout-error, .pm-callout-misapplied { border-color: #c0392b; background: #fbeeec; }
+.pm-callout-gap { border-color: #d68910; background: #fdf4e6; }
+.pm-callout-new, .pm-callout-strengthened { border-color: #2e8b57; background: #eaf6ef; }
+.pm-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; align-items: center; margin-bottom: 0.5rem; }
+.pm-search { position: relative; flex: 1 1 280px; max-width: 420px; }
+.pm-search input { width: 100%; box-sizing: border-box; font: inherit; padding: 0.4rem 0.6rem; border: 1px solid #ccc; border-radius: 6px; }
+.pm-results { position: absolute; z-index: 5; left: 0; right: 0; top: 100%; margin: 2px 0 0; padding: 0.2rem 0; list-style: none; background: #fff; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 6px 20px #0002; max-height: 22rem; overflow: auto; font-size: 0.85rem; }
+.pm-results li { padding: 0.3rem 0.6rem; cursor: pointer; display: flex; gap: 0.4rem; align-items: baseline; }
+.pm-results li.on, .pm-results li:hover { background: #f3efe4; }
+.pm-seg { display: inline-flex; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; }
+.pm-seg button, .pm-btn { font: inherit; font-size: 0.85rem; background: #fff; border: 0; padding: 0.35rem 0.7rem; cursor: pointer; }
+.pm-seg button.on { background: #2b2b2b; color: #fff; }
+.pm-btn { border: 1px solid #ccc; border-radius: 6px; }
+.pm-check { font-size: 0.85rem; color: #444; display: inline-flex; gap: 0.3rem; align-items: center; }
+.pm-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.8rem; margin-bottom: 0.4rem; color: #444; }
+.pm-leg { display: inline-flex; align-items: center; gap: 0.3rem; cursor: default; }
+.pm-leg b { color: #999; font-weight: normal; }
+.pm-canvas { position: relative; height: min(78vh, 820px); border: 1px solid #e3e0d8; border-radius: 8px; background: #fff; overflow: hidden; }
+.pm-canvas svg { width: 100%; height: 100%; cursor: grab; display: block; }
+.pm-hint { position: absolute; left: 0.6rem; bottom: 0.4rem; font-size: 0.75rem; color: #888; pointer-events: none; background: #fffc; padding: 0.1rem 0.3rem; }
+.pm-k { display: inline-block; width: 1.4em; height: 3px; vertical-align: middle; }
+.pm-k-dep { background: #1f6fb2; }
+.pm-k-anc { background: #c0392b; }
+.pm-tip { position: absolute; z-index: 4; max-width: 290px; pointer-events: none; background: #222; color: #eee; padding: 0.4rem 0.55rem; border-radius: 5px; font-size: 0.78rem; line-height: 1.35; }
+.pm-tip span { color: #bbb; }
+.pm-edge { fill: none; stroke: #9a968c; stroke-opacity: 0.45; stroke-width: 1.1; transition: stroke-opacity 0.2s; }
+.pm-via-statement { stroke-dasharray: 3 3; }
+.pm-via-cite { stroke: #b9b5ab; }
+.pm-edge.is-dim { stroke-opacity: 0.08; }
+.pm-edge.is-dep { stroke: #1f6fb2; stroke-opacity: 0.85; stroke-width: 1.8; }
+.pm-edge.is-anc { stroke: #c0392b; stroke-opacity: 0.85; stroke-width: 1.8; }
+.pm-node { cursor: pointer; transition: opacity 0.2s; }
+.pm-node circle, .pm-node rect { stroke: #fff; stroke-width: 1.5; }
+.pm-node text { font-size: 10.5px; fill: #333; paint-order: stroke; stroke: #fff; stroke-width: 3px; pointer-events: none; }
+.pm-node text.pm-in { fill: #fff; stroke: none; text-anchor: middle; font-size: 10px; font-weight: 600; }
+.pm-node.is-dim { opacity: 0.18; }
+.pm-node.is-dep circle, .pm-node.is-dep rect { stroke: #1f6fb2; stroke-width: 2.5; }
+.pm-node.is-anc circle, .pm-node.is-anc rect { stroke: #c0392b; stroke-width: 2.5; }
+.pm-node.is-sel circle, .pm-node.is-sel rect { stroke: #111; stroke-width: 3.5; }
+.pm-node.is-sel text { font-weight: 700; }
+.pm-node.is-hit circle, .pm-node.is-hit rect { stroke: #f1c40f; stroke-width: 4; }
+.pm-sub { font-size: 0.88rem; color: #555; margin: 0.2rem 0 0.6rem; max-width: 60rem; }
+.pm-crumbs { font-size: 0.9rem; }
+.pm-crumbs button { font: inherit; background: none; border: 0; padding: 0; color: #1f5f99; cursor: pointer; }
+.pm-tm { position: relative; border: 1px solid #e3e0d8; border-radius: 8px; background: #fff; overflow: hidden; }
+.pm-tm svg { display: block; }
+.pm-tile { stroke: #fff; stroke-width: 0.5; cursor: pointer; opacity: 0.78; }
+.pm-tile:hover { opacity: 1; }
+.pm-tile.is-linked { opacity: 1; stroke: #222; stroke-width: 1.2; }
+.pm-tile.is-dim { opacity: 0.25; }
+.pm-tile.is-hl { opacity: 1; stroke: #111; stroke-width: 3; }
+.pm-dir { stroke: #0002; }
+.pm-dirlab { font-size: 11px; font-weight: 600; fill: #333; cursor: zoom-in; }
+.pm-dirlab:hover { fill: #b3312c; }
+.pm-tilelab { font-size: 9.5px; fill: #fff; pointer-events: none; }
+.pm-areas { margin-top: 0.8rem; max-width: 34rem; }
+.pm-areas h4 { margin: 0 0 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #666; }
+.pm-areas table { border-collapse: collapse; width: 100%; font-size: 0.82rem; }
+.pm-areas td { padding: 0.1rem 0.4rem; }
+.pm-areas i { border-radius: 2px; margin-right: 0.35rem; vertical-align: -1px; }
+.pm-num { text-align: right; font-variant-numeric: tabular-nums; }
+.pm-bar { width: 45%; }
+.pm-bar span { display: block; height: 0.6rem; border-radius: 2px; }
+.pm-stats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 0.6rem; }
+.pm-stats div { background: #fff; border: 1px solid #e3e0d8; border-radius: 6px; padding: 0.35rem 0.6rem; display: flex; flex-direction: column; min-width: 6.5rem; }
+.pm-stats b { font-size: 1.2rem; }
+.pm-stats span { font-size: 0.75rem; color: #666; }
+.pm-bip { background: #fff; border: 1px solid #e3e0d8; border-radius: 8px; overflow-x: auto; }
+.pm-bip svg { display: block; font-size: 11px; }
+.pm-colhead { font-weight: 600; font-size: 12px; fill: #444; }
+.pm-bilink { fill: none; stroke-opacity: 0.45; stroke-width: 1.3; }
+.pm-bilink.is-dim { stroke-opacity: 0.1; }
+.pm-bilink.is-on { stroke-opacity: 1; stroke-width: 2.5; }
+.pm-olditem circle { fill: #999; }
+.pm-olditem text { fill: #555; }
+.pm-olditem.is-on text { fill: #111; font-weight: 700; }
+.pm-curitem { cursor: pointer; }
+.pm-curitem:hover text, .pm-curitem.is-on text { font-weight: 700; }
+.pm-badge, .pm-badge-inline { fill: #aaa; background: #aaa; }
+.pm-badge-inline { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 2px; vertical-align: -1px; }
+.pm-badge-error, .pm-badge-misapplied { fill: #c0392b; background: #c0392b; }
+.pm-badge-gap { fill: #e0a100; background: #e0a100; }
+.pm-badge-new { fill: #2e8b57; background: #2e8b57; }
+.pm-badge-strengthened { fill: #1f6fb2; background: #1f6fb2; }
+.pm-badge-split { fill: #8b5fb0; background: #8b5fb0; }
+.pm-badge-dropped { fill: #555; background: #555; }
+.pm-foot { margin: 1.5rem 0 0.5rem; font-size: 0.8rem; color: #777; max-width: 62rem; }

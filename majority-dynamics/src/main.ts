@@ -1,11 +1,79 @@
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 import { mountLayout } from './shared/layout';
 
+const tex = (s: string, displayMode = false) => katex.renderToString(s, { displayMode, throwOnError: false });
+
+const SOURCES = [
+  { href: 'https://gopalkgoel.github.io/majority-dynamics/', label: 'Essay', note: 'How a small majority takes over a sparse network' },
+  { href: 'https://gopalkgoel.github.io/majority-dynamics/atlas/new.pdf', label: 'Paper (PDF)', note: 'Current version, 86 pages' },
+  { href: 'https://arxiv.org/abs/2609.14957', label: 'arXiv:2609.14957', note: 'Majority dynamics on sparse random graphs' },
+  { href: 'https://gopalkgoel.github.io/majority-dynamics/atlas/', label: 'Proof atlas', note: 'Statement by statement, with morals and audit notes' },
+  { href: 'https://github.com/gopalkgoel/sparse-majority-dynamics-lean', label: 'Lean formalization', note: 'Complete, no sorry, standard axioms only' },
+];
+
+const CARDS = [
+  {
+    href: './lab/index.html',
+    title: 'Large-N lab',
+    body: `Simulate majority dynamics on ${tex('\\mathbb G(N,p)')} at scale and compare the lead's growth with the
+      ${tex('\\sqrt{2/\\pi}\\,\\sqrt{pN}')} amplification heuristic and the predicted day count — including the open
+      regime ${tex('pN\\sim\\log N')}, which the theorem does not reach.`,
+  },
+  {
+    href: './histories/index.html',
+    title: 'Opinion histories',
+    body: `Watch the ${tex('2^k')} opinion-history classes and their block-pair degree counts evolve, and see why
+      conditioning on yesterday's votes is the central obstacle.`,
+  },
+  {
+    href: './proof-map/index.html',
+    title: 'Proof map',
+    body: `The proof's dependency graph from the main theorem down to the literature, the ${tex('121\\text{k}')}-line Lean
+      development cross-linked to each statement, and what changed since the August 2025 manuscript.`,
+  },
+];
+
 const main = mountLayout(0);
+main.classList.add('home');
 main.innerHTML = `
-  <h1>Majority dynamics on sparse random graphs: a companion</h1>
-  <p>Interactive companions to Gopal Goel and Ashwin Sah, <em>Majority dynamics on sparse random graphs</em>
-  (<a href="https://arxiv.org/abs/2609.14957">arXiv:2609.14957</a>,
-  <a href="https://gopalkgoel.github.io/majority-dynamics/">essay</a>,
-  <a href="https://gopalkgoel.github.io/majority-dynamics/atlas/">proof atlas</a>,
-  <a href="https://github.com/gopalkgoel/sparse-majority-dynamics-lean">Lean formalization</a>).</p>
+  <header class="home-hero">
+    <p class="home-kicker">An interactive companion to</p>
+    <h1>Majority dynamics on sparse random graphs</h1>
+    <p class="home-authors">by <strong>Gopal Goel</strong> and <strong>Ashwin Sah</strong></p>
+    <ul class="home-sources">${SOURCES.map(
+      (s) => `<li><a href="${s.href}" target="_blank" rel="noopener"><b>${s.label}</b><span>${s.note}</span></a></li>`,
+    ).join('')}</ul>
+  </header>
+
+  <section class="home-prose">
+    <p>Give each of ${tex('N')} people an opinion ${tex('\\pm1')} by a fair coin, and connect each pair independently with
+    probability ${tex('p')}. Every day, everyone simultaneously adopts the majority opinion among their neighbours, keeping
+    their own on a tie. The initial majority leads by only about ${tex('\\sqrt N')} — a vanishing fraction of the
+    population. Goel and Sah prove that on ${tex('G\\sim\\mathbb G(N,p)')} with ${tex('pN\\ge N^{\\varepsilon}')} this tiny
+    lead nevertheless takes over: writing ${tex('p\\approx N^{-\\theta}')}, with high probability every vertex holds the
+    initial majority opinion on day</p>
+    ${tex('k = 2\\Bigl\\lfloor \\frac{1}{1-\\theta} \\Bigr\\rfloor + 3,', true)}
+    <p>uniformly over the whole range up to ${tex('p=1')}. This settles the question for every fixed polynomial density,
+    extending a line of work that began with the 2014 conjecture of Benjamini, Chan, O’Donnell, Tamuz, and Tan; the
+    regime where ${tex('pN')} grows more slowly than every power of ${tex('N')}, such as ${tex('pN=\\log N')}, remains open.</p>
+    <p>If the graph were resampled every day, the calculation would be easy: each vertex compares two nearly
+    independent binomial counts, so one update multiplies the lead by roughly ${tex('\\sqrt{2pN/\\pi}')}, and about
+    ${tex('1/(1-\\theta)')} updates turn ${tex('\\sqrt N')} into order ${tex('N')}. The difficulty is that the graph is
+    <em>not</em> resampled: every vote reveals information about the edges that tomorrow's votes depend on.</p>
+    <p>The proof keeps exactly the information that matters. After ${tex('k')} days it records the partition of vertices
+    into ${tex('2^k')} opinion-history classes and every vertex's degree into every class; conditioned on this state the
+    graph is uniform with those block-pair degrees. Asymptotic enumeration of graphs by degree sequence (McKay–Wormald,
+    Canfield–Greenhill–McKay, Liebenau–Wormald) transfers the problem to a tilted binomial row model, whose Gaussian
+    limit is an idealized recursion that amplifies the lead day by day. Once the lead is macroscopic, jumbledness and
+    a contraction estimate drive the minority to zero.</p>
+    <p>The paper is accompanied by a complete Lean 4 formalization — about 121,000 lines, including the enumeration
+    inputs, with no <code>sorry</code> and no axioms beyond Lean's standard ones — and by a proof atlas mapping every
+    statement to the current paper, the August 2025 manuscript, and the Lean declarations. The pages below are an
+    independent companion built from those sources; all mathematics is due to the authors.</p>
+  </section>
+
+  <section class="home-cards">${CARDS.map(
+    (c) => `<a class="home-card" href="${c.href}"><h2>${c.title} <span aria-hidden="true">→</span></h2><p>${c.body}</p></a>`,
+  ).join('')}</section>
 `;
