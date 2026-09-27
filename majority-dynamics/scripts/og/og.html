@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;width:1200px;height:630px;background:#fbfaf7;font-family:system-ui,sans-serif;color:#1c1c1c;display:flex;overflow:hidden}
+.l{flex:1;padding:70px 0 60px 72px;display:flex;flex-direction:column}
+.k{text-transform:uppercase;letter-spacing:.1em;color:#777;font-size:20px}
+h1{font-family:Georgia,serif;font-weight:600;font-size:64px;line-height:1.08;margin:14px 0 18px;letter-spacing:-.01em}
+.a{font-size:26px;color:#333}.a b{color:#1c1c1c}
+.p{margin-top:auto;display:flex;gap:14px;font-size:21px}
+.p span{border:1px solid #e3e0d8;background:#fff;border-radius:8px;padding:8px 14px;color:#8f2621;font-weight:600}
+svg{width:430px;height:630px}
+</style></head><body>
+<div class="l"><div class="k">An interactive companion</div>
+<h1>Majority dynamics on sparse random graphs</h1>
+<div class="a">Goel &amp; Sah · <b>arXiv:2609.14957</b></div>
+<div class="p"><span>Large-N lab</span><span>Opinion histories</span><span>Proof map</span></div></div>
+<svg id="g" viewBox="0 0 430 630"></svg>
+<script>
+let s=7;const r=()=>(s=(s*16807)%2147483647)/2147483647;
+const g=document.getElementById('g'),n=46,P=[];
+for(let i=0;i<n;i++){P.push([40+r()*350,50+r()*530,r()<0.72?'#2563a8':'#d9731e'])}
+let h='';for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const dx=P[i][0]-P[j][0],dy=P[i][1]-P[j][1];if(dx*dx+dy*dy<13000&&r()<.55)h+=`<line x1="${P[i][0]}" y1="${P[i][1]}" x2="${P[j][0]}" y2="${P[j][1]}" stroke="#d6d1c4" stroke-width="1.6"/>`}
+for(const p of P)h+=`<circle cx="${p[0]}" cy="${p[1]}" r="9" fill="${p[2]}" stroke="#fbfaf7" stroke-width="2.5"/>`;
+g.innerHTML=h;
+</script></body></html>
