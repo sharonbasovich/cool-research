@@ -31,9 +31,11 @@ function parseHash(): { view: ViewId; sel: Selection } {
   const [v, ...rest] = decodeURIComponent(location.hash.slice(1)).split('/');
   const id = rest.join('/');
   const view = (VIEWS.some((x) => x.id === v) ? v : 'map') as ViewId;
-  if (!id) return { view, sel: null };
-  return { view, sel: view === 'lean' ? { type: 'module', id } : { type: 'node', id } };
+  return { view, sel: id ? { type: /^[A-Z]\w*(\.\w+)+$/.test(id) ? 'module' : 'node', id } : null };
 }
+
+const hashFor = (v: ViewId, sel: Selection) => `#${v}${sel ? '/' + encodeURIComponent(sel.id) : ''}`;
+let restoring = false;
 
 async function start() {
   const [file, lean] = await Promise.all([load<AtlasFile>('atlas.json'), load<LeanData>('lean.json')]);
@@ -51,9 +53,12 @@ async function start() {
     index: buildCrossIndex(atlas, lean),
     selection: null,
     select(sel, opts = {}) {
+      const changed = sel?.id !== ctx.selection?.id;
       ctx.selection = sel;
       if (opts.view && opts.view !== view) showView(opts.view);
-      history.replaceState(null, '', `#${view}${sel ? '/' + encodeURIComponent(sel.id) : ''}`);
+      const url = hashFor(view, sel);
+      if (changed && !restoring && location.hash !== url) history.pushState(null, '', url);
+      else history.replaceState(null, '', url);
       for (const fn of listeners) fn(sel, !!opts.recenter);
     },
     onSelect(fn) {
@@ -100,8 +105,7 @@ async function start() {
     for (const [id, el] of viewEls) el.hidden = id !== v;
     if (!views.has(v)) views.set(v, { el: viewEls.get(v)!, ...mounts[v](ctx, viewEls.get(v)!) });
     views.get(v)!.refresh();
-    const sel = ctx.selection;
-    history.replaceState(null, '', `#${v}${sel ? '/' + encodeURIComponent(sel.id) : ''}`);
+    history.replaceState(null, '', hashFor(v, ctx.selection));
   }
   main.querySelector('.pm-tabs')!.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-view]');
@@ -116,12 +120,17 @@ async function start() {
   ctx.selection = valid ? initial.sel : null;
   showView(initial.view);
   ctx.select(ctx.selection);
-  window.addEventListener('hashchange', () => {
+  const restore = () => {
     const h = parseHash();
-    if (h.view !== view) showView(h.view);
     const ok = h.sel && (h.sel.type === 'module' ? ctx.index.moduleByName.has(h.sel.id) : graph.byId.has(h.sel.id));
-    if (ok && h.sel?.id !== ctx.selection?.id) ctx.select(h.sel, { recenter: true });
-  });
+    const sel = ok ? h.sel : null;
+    restoring = true;
+    if (h.view !== view) showView(h.view);
+    if (sel?.id !== ctx.selection?.id) ctx.select(sel, { recenter: true });
+    restoring = false;
+  };
+  window.addEventListener('popstate', restore);
+  window.addEventListener('hashchange', restore);
 }
 
 start().catch((err: unknown) => {
