@@ -265,7 +265,7 @@ export function startBackground(
       pointer.x += (pointer.tx - pointer.x) * 0.04;
       pointer.y += (pointer.ty - pointer.y) * 0.04;
     }
-    group.rotation.set(0.28 + pointer.y * 0.25, angle + pointer.x * 0.4, 0);
+    group.rotation.set(0.28 + pointer.y * 0.375, angle + pointer.x * 0.6, 0);
 
     let fade = 1;
     if (phase === 'fadein') {
