@@ -128,3 +128,7 @@
 .pm-badge-split { fill: #8b5fb0; background: #8b5fb0; }
 .pm-badge-dropped { fill: #555; background: #555; }
 .pm-foot { margin: 1.5rem 0 0.5rem; font-size: 0.8rem; color: #777; max-width: 62rem; }
+@media (max-width: 640px) {
+  .pm-tabs { flex-wrap: wrap; }
+  .pm-tabs button { padding: 0.4rem 0.6rem; }
+}
