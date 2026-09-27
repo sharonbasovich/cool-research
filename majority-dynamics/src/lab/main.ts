@@ -281,15 +281,15 @@ function setControls(c: Controls): void {
 function getControls(): Controls {
   const n = (k: string): number => Number(field(k).value);
   return {
-    n: Math.max(10, Math.round(n('n'))),
+    n: Math.min(2_000_000, Math.max(10, Math.round(n('n')))),
     mode: field('mode').value as DensityMode,
     theta: n('theta'),
     pn: n('pn'),
     init: field('init').value as InitMode,
     tau: n('tau'),
-    trials: Math.max(1, Math.round(n('trials'))),
+    trials: Math.min(500, Math.max(1, Math.round(n('trials')))),
     seed: Math.round(n('seed')),
-    maxDays: Math.max(2, Math.round(n('maxDays'))),
+    maxDays: Math.min(500, Math.max(2, Math.round(n('maxDays')))),
   };
 }
 
@@ -418,6 +418,8 @@ function launch(specs: RunSpec[], sink: RunResult[], what: string): void {
 }
 
 function syncUrl(c: Controls): void {
+  setControls(c);
+  updateDerived();
   const q = new URLSearchParams(Object.entries(c).map(([k, v]) => [k, String(v)]));
   history.replaceState(null, '', `${location.pathname}?${q}`);
 }

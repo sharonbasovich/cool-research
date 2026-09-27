@@ -3,7 +3,6 @@
 .hx .hx-lede { font-size: 1.1rem; color: var(--muted); max-width: 46rem; }
 .hx h2 { font-size: 1.35rem; margin: 0 0 0.5rem; }
 .hx h2 .hx-num { color: var(--muted); font-weight: 400; margin-right: 0.4rem; }
-.hx a { color: #1f5a96; }
 .hx .hx-p { color: var(--plus); font-weight: 600; }
 .hx .hx-m, .hx-tooltip .hx-m { color: var(--minus); font-weight: 600; }
 .hx-tooltip .hx-p { color: #2563a8; font-weight: 600; }
@@ -61,3 +60,4 @@
   .hx section.hx-step { grid-template-columns: 1fr; }
   .hx .hx-figure { position: static; }
 }
+.hx section.hx-step[id] { scroll-margin-top: var(--hx-controls-h, 4.5rem); }

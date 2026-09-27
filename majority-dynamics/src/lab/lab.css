@@ -1,7 +1,6 @@
 .lab h1 { margin: 0.2rem 0 0.4rem; font-size: 2rem; letter-spacing: -0.01em; }
 .lab h2 { margin: 0 0 0.6rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .lab .lede { font-size: 1.05rem; max-width: 60rem; }
-.lab a { color: #1f5aa6; }
 .lab .card { background: #fff; border: 1px solid #e3dfd6; border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1.1rem 0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); }
 .lab .card > p { max-width: 62rem; }
 .lab blockquote { margin: 0.8rem 0; padding: 0.6rem 1rem; border-left: 3px solid #b8322a; background: #fbf6f3; }
@@ -41,3 +40,5 @@
 .lab code { font-size: 0.85em; background: #f2efe8; padding: 0.05rem 0.3rem; border-radius: 4px; }
 .lab .legend-html { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; font-size: 0.8rem; color: #333; margin: 0.2rem 0 0.4rem 64px; }
 .lab .legend-html .item { display: inline-flex; align-items: center; gap: 0.35rem; }
+.lab .chart-head label { min-width: 0; max-width: 100%; flex-wrap: wrap; }
+.lab .chart-head select { min-width: 0; width: 100%; max-width: 32rem; }

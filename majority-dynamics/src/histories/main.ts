@@ -211,6 +211,13 @@ main.innerHTML = `
 Every figure is reproducible from the parameters in the toolbar.</footer>
 `;
 
+const controlsBar = main.querySelector<HTMLElement>('.hx-controls');
+if (controlsBar) {
+  const syncControlsHeight = () => main.style.setProperty('--hx-controls-h', `${controlsBar.offsetHeight + 16}px`);
+  new ResizeObserver(syncControlsHeight).observe(controlsBar);
+  syncControlsHeight();
+}
+
 function el<T extends HTMLElement = HTMLElement>(id: string): T {
   const e = document.getElementById(id);
   if (!e) throw new Error(`#${id} missing`);
