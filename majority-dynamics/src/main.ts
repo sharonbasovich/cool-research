@@ -1,6 +1,8 @@
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import { mountLayout } from './shared/layout';
+import type { HudState } from './home/background';
+import { EPISODE_N, EPISODE_PN } from './home/episode';
 
 const tex = (s: string, displayMode = false) => katex.renderToString(s, { displayMode, throwOnError: false });
 
@@ -44,6 +46,16 @@ main.innerHTML = `
     <ul class="home-sources">${SOURCES.map(
       (s) => `<li><a href="${s.href}" target="_blank" rel="noopener"><b>${s.label}</b><span>${s.note}</span></a></li>`,
     ).join('')}</ul>
+    <figure class="home-live" hidden>
+      <div class="home-live-top">
+        <span class="home-live-day">Start</span>
+        <button type="button" class="home-live-toggle">Pause</button>
+      </div>
+      <div class="home-live-bar" aria-hidden="true"><span></span></div>
+      <p class="home-live-caption" aria-live="polite"></p>
+      <figcaption>The background is a live run: ${EPISODE_N.toLocaleString()} people, about ${EPISODE_PN} friends each,
+      and the same friendships every day.</figcaption>
+    </figure>
   </header>
 
   <section class="home-prose">
@@ -77,3 +89,65 @@ main.innerHTML = `
     (c) => `<a class="home-card" href="${c.href}"><h2>${c.title} <span aria-hidden="true">→</span></h2><p>${c.body}</p></a>`,
   ).join('')}</section>
 `;
+
+const colorName = (o: 1 | -1) => (o > 0 ? '<b class="c-red">Red</b>' : '<b class="c-blue">Blue</b>');
+
+function caption(s: HudState): string {
+  const maj = s.majority > 0 ? s.plus : s.n - s.plus;
+  const pct = ((100 * maj) / s.n).toFixed(1);
+  const who = colorName(s.majority);
+  switch (s.phase) {
+    case 'start':
+      return `Everyone starts with a coin flip. ${who} is ahead by just ${2 * maj - s.n} out of ${s.n.toLocaleString()} people.`;
+    case 'running':
+      return `Each person switched to the majority view of their friends. ${who} now holds ${pct}%.`;
+    case 'done':
+      if ((s.plus === s.n) !== s.majority > 0) return `The minority won this time. That's rare, and the theorem says it becomes vanishingly rare as N grows.`;
+      return `Everyone agrees with the original majority. The friendships never changed, and that is what makes the proof hard.`;
+    case 'stuck':
+      return `This run stalled at ${pct}% before full agreement. At this small size that happens now and then.`;
+  }
+}
+
+const canvas = document.createElement('canvas');
+canvas.className = 'home-bg';
+canvas.setAttribute('aria-hidden', 'true');
+document.body.prepend(canvas);
+const live = main.querySelector<HTMLElement>('.home-live')!;
+const dayEl = live.querySelector<HTMLElement>('.home-live-day')!;
+const bar = live.querySelector<HTMLElement>('.home-live-bar span')!;
+const capEl = live.querySelector<HTMLElement>('.home-live-caption')!;
+const toggle = live.querySelector<HTMLButtonElement>('.home-live-toggle')!;
+let playing = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+void import('./home/background').then(({ startBackground }) => {
+  const bg = startBackground(
+  canvas,
+  (s) => {
+    dayEl.textContent = s.day === 0 ? 'Start' : `Day ${s.day}`;
+    bar.style.width = `${(100 * s.plus) / s.n}%`;
+    capEl.innerHTML = caption(s);
+  },
+  { playing },
+);
+
+if (bg) {
+  live.hidden = false;
+  const label = () => (toggle.textContent = playing ? 'Pause' : 'Play');
+  label();
+  toggle.addEventListener('click', () => {
+    playing = !playing;
+    bg.setPlaying(playing);
+    label();
+  });
+  const fade = () => {
+    const t = Math.min(1, window.scrollY / (window.innerHeight * 0.8));
+    const base = window.innerWidth < 700 ? 0.55 : 1;
+    canvas.style.opacity = String(base * (1 - 0.65 * t));
+  };
+  window.addEventListener('scroll', fade, { passive: true });
+  fade();
+} else {
+  canvas.remove();
+}
+});

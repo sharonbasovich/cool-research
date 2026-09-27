@@ -4,6 +4,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   base: './',
   build: {
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
