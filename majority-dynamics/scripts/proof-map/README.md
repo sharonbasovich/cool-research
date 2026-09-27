@@ -28,8 +28,8 @@ The script refuses to run if the Lean checkout's `HEAD` differs from the pin. Ou
 - **Edges** (`source` uses `target`). The atlas does not encode dependencies as markup, so they are the
   numbered cross-references (`Lemma 3.8`, `Theorem B.12`, `(A.3)` …) inside
   - a statement's proof toggle, or a section proof region (`Proof of Theorem 1.2` headings,
-    `context-evidence` asides, `<em>Proof of …</em>`) — `via: "proof"`;
-  - the statement itself, only when the referenced statement comes earlier — `via: "statement"`.
+    `context-evidence` asides, `<em>Proof of …</em>`), with `via: "proof"`
+  - the statement itself, only when the referenced statement comes earlier, with `via: "statement"`.
   Math and citation spans are masked first, so `Theorem 2.8.4 of [Ver18]` or `([LW17], Theorem 1.4)` do
   not create edges. Two proofs are attached by hand (see `SECTION_PROOF_OVERRIDES`,
   `PROOF_BY_FOLLOWING_LEMMAS`), each with the atlas sentence that justifies it.

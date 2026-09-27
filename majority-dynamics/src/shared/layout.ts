@@ -44,7 +44,7 @@ export function mountLayout(depth: 0 | 1): HTMLElement {
     <p>An independent companion to Gopal Goel and Ashwin Sah,
     <em>Majority dynamics on sparse random graphs</em>
     (<a href="https://arxiv.org/abs/2609.14957">arXiv:2609.14957</a>).
-    Mathematics and proofs are theirs; simulations here are empirical illustrations, not proofs.</p>
+    The math and proofs are theirs. The simulations here are illustrations, not proofs.</p>
     <p><a href="https://gopalkgoel.github.io/majority-dynamics/">Essay</a> ·
     <a href="https://gopalkgoel.github.io/majority-dynamics/atlas/">Proof atlas</a> ·
     <a href="https://gopalkgoel.github.io/majority-dynamics/atlas/new.pdf">Paper</a> ·

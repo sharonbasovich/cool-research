@@ -49,7 +49,7 @@ export function mountTreemap(ctx: Ctx, root: HTMLElement): { refresh(): void } {
     </div>
     <p class="pm-sub">${mods.length.toLocaleString()} modules, ${total.toLocaleString()} lines at
       <a href="${esc(ctx.file.meta.leanRepo)}/tree/${esc(ctx.file.meta.leanRev)}" target="_blank" rel="noopener"><code>${esc(ctx.file.meta.leanRev.slice(0, 7))}</code></a>.
-      Area is proportional to lines; outlined tiles are linked to atlas statements (${linked.size} modules). Click a directory header to zoom, a tile for details.</p>
+      Area is proportional to lines, and outlined tiles are linked to atlas statements (${linked.size} modules). Click a directory header to zoom, a tile for details.</p>
     <div class="pm-tm"><svg></svg><div class="pm-tip" hidden></div></div>
     <div class="pm-areas"></div>`;
   const svg = d3.select(root.querySelector('svg')!);
